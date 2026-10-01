@@ -9,12 +9,13 @@ const config = ({
   testDir: './tests',
   timeout: 40*1000,
   expect : {
-    timeout: 20*1000,
+    timeout: 10*1000,
   },
   reporter: 'html',
   use: {
 
     browserName: 'chromium',
+    headless: false,
     trace: 'on-first-retry',
   },
 
