@@ -7,7 +7,6 @@ test("FirstTest", async function( {browser}) {
     console.log(await page.title());
     await expect(page).toHaveTitle("Instagram");
 
-
 });
 
 test("FirstTestAnonymousMethodBrowserFixture", async ({browser}) => {
@@ -17,23 +16,27 @@ test("FirstTestAnonymousMethodBrowserFixture", async ({browser}) => {
     console.log(await page.title());
 });
 
-test("FirstTestPageFixture", async ({page}) => {
+test.only("FirstTestPageFixture", async ({page}) => {
     await page.goto("https://www.google.com/");
     console.log(await page.title());
 });
 
-test.only("InvalidLoginPractice", async ({page}) => {
+test("InvalidLoginPractice", async ({page}) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
     const username = page.locator("input#username");
     const signIn = page.locator("input#signInBtn");
+    const cardTitle = page.locator('.card-body a');
     await username.fill("rahulshetty");
-    await page.locator("[type='password']").fill("learning");
+    await page.locator("[type='password']").fill("Learning@830$3mK2");
     await signIn.click();
     console.log(await page.locator("[style*='block']").textContent());
     await expect(await page.locator("[style*='block']")).toContainText("Incorrect ");
     await username.fill("");
     await username.fill("rahulshettyacademy");
     await signIn.click();
+    //console.log(await page.locator('.card-body a').first().textContent());
+    //console.log(await page.locator('.card-body a').nth(2).textContent());
+    console.log(await cardTitle.allTextContents());
 
 });
